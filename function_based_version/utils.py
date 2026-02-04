@@ -180,7 +180,7 @@ def withdraw_failed_enough_card_money_message(amount: str) -> str:  # todo selec
 ╠══════════════════════════════════════════════════════════════╣
 ║  Balans yetarli emas.                                        ║
 ║  So'ralgan: {amount + ' so\'m' + (43 - len(amount)) * " " + '║'}
-║  Mavjud:    {balance + ' so\'m' + (40 - len(balance)) * " " + '║'}                                   ║
+║  Mavjud:    {balance + ' so\'m' + (40 - len(balance)) * " " + '║'}
 ╚══════════════════════════════════════════════════════════════╝
 ENTER bosing... """
 
@@ -204,3 +204,209 @@ withdraw_not_suitable_banknote = Fore.RED + Style.BRIGHT + """
 ENTER bosing...
 
 """
+
+deposit_fill_message = Fore.GREEN + Style.BRIGHT + """
+╔══════════════════════════════════════════════════════════════╗
+║                      HISOBNI TO'LDIRISH (DEPOSIT)            ║
+╠══════════════════════════════════════════════════════════════╣
+║  Hisobingizni to'ldirish uchun miqdor kiriting.              ║
+║                                                              ║
+║  [0] Bekor qilish                                            ║
+╚══════════════════════════════════════════════════════════════╝
+Miqdor (so'm): _ """
+
+
+def deposit_success_message(account_id: str, amount: str):
+    card_number = "649865645464"
+    balance = "152564646546546"
+    current_time = datetime.datetime.now()
+    return Fore.GREEN + Style.BRIGHT + f"""
+╔══════════════════════════════════════════════════════════════╗
+║                       AMALIYOT MUVAFFAQIYATLI                ║
+╠══════════════════════════════════════════════════════════════╣
+║  Operatsiya: Hisobni to'ldirish                              ║
+║  Miqdor:     {amount + ' so\'m' + (43 - len(amount)) * " " + '║'}
+║  Karta:      {card_number + (48 - len(card_number)) * " " + '║'}
+║  Sana/vaqt:  {str(current_time) + (48 - len(str(current_time))) * " " + '║'}
+║                                                              ║
+║  Yangi balans: {balance + ' so\'m' + (41 - len(balance)) * " " + '║'}
+╚══════════════════════════════════════════════════════════════╝
+ENTER bosing... """
+
+
+deposit_failed_message = """
+╔══════════════════════════════════════════════════════════════╗
+║                            XATOLIK                           ║
+╠══════════════════════════════════════════════════════════════╣
+║  Miqdor to'g'ri kiriting bo'lishi kerak.                     ║
+╚══════════════════════════════════════════════════════════════╝
+ENTER bosing...
+
+"""
+
+transfer_to_card_message = Fore.GREEN + Style.BRIGHT + """
+╔══════════════════════════════════════════════════════════════╗
+║                    KARTADAN-KARTAGA O'TKAZMA                 ║
+╠══════════════════════════════════════════════════════════════╣
+║  Qabul qiluvchi karta raqamini kiriting (16 xonali).         ║
+║                                                              ║
+║  [0] Bekor qilish                                            ║
+╚══════════════════════════════════════════════════════════════╝
+Qabul qiluvchi karta: _ """
+
+transfer_enter_amount_message = Fore.GREEN + Style.BRIGHT + """
+╔══════════════════════════════════════════════════════════════╗
+║                    KARTADAN-KARTAGA O'TKAZMA                 ║
+╠══════════════════════════════════════════════════════════════╣
+║  O'tkazma miqdorini kiriting.                                ║
+║                                                              ║
+║  [0] Bekor qilish                                            ║
+╚══════════════════════════════════════════════════════════════╝
+Miqdor (so'm): _ """
+
+
+def transfer_confirm_message(amount: str, to_card: str):
+    return Fore.GREEN + Style.BRIGHT + f"""
+╔══════════════════════════════════════════════════════════════╗
+║                     OPERATSIYANI TASDIQLASH                  ║
+╠══════════════════════════════════════════════════════════════╣
+║  Kimga:   {to_card + (51 - len(to_card)) * " " + '║'}
+║  Miqdor:  {amount + ' so\'m' + (46 - len(amount)) * " " + '║'}
+║                                                              ║
+║  Davom etilsinmi?                                            ║
+║  [1] Ha, tasdiqlayman                                        ║
+║  [0] Yo'q, bekor qilish                                      ║
+╚══════════════════════════════════════════════════════════════╝
+Tanlov: _
+
+"""
+
+
+def transfer_success_message(to_card: str, amount: str):
+    current_time = datetime.datetime.now()
+    return Fore.GREEN + Style.BRIGHT + f"""
+╔══════════════════════════════════════════════════════════════╗
+║                       AMALIYOT MUVAFFAQIYATLI                ║
+╠══════════════════════════════════════════════════════════════╣
+║  Operatsiya: Kartadan-kartaga o'tkazma                       ║
+║  Kimga:     {to_card + (51 - len(to_card)) * " " + '║'}
+║  Miqdor:    {amount + ' so\'m' + (46 - len(amount)) * " " + '║'}
+║  Sana/vaqt: {str(current_time) + (48 - len(str(current_time))) * " " + '║'}                                    ║
+║                                                              ║
+║  Qolgan balans: 1 400 000 so'm                               ║
+╚══════════════════════════════════════════════════════════════╝
+ENTER bosing... """
+
+
+transfer_card_not_found_message = Fore.RED + Style.BRIGHT + """
+╔══════════════════════════════════════════════════════════════╗
+║                            XATOLIK                           ║
+╠══════════════════════════════════════════════════════════════╣
+║  Qabul qiluvchi karta topilmadi.                             ║
+╚══════════════════════════════════════════════════════════════╝
+ENTER bosing... """
+
+transfer_to_yourself_message = Fore.RED + Style.BRIGHT + """
+╔══════════════════════════════════════════════════════════════╗
+║                            XATOLIK                           ║
+╠══════════════════════════════════════════════════════════════╣
+║  O'zingizga o'zingiz pul yubora olmaysiz.                    ║
+╚══════════════════════════════════════════════════════════════╝
+ENTER bosing... """
+
+transaction_history = Fore.GREEN + Style.BRIGHT + """
+╔═══════════════════════════════════════════════════════════════════╗
+║                  TRANZAKSIYALAR TARIXI (OXIRGI 10)                ║
+╠═══════════════════════════════════════════════════════════════════╣
+║  1) 2026-02-03 12:48 | TRANSFER_OUT | -150 000 | Balans: 1 400k   ║
+║  2) 2026-02-03 12:45 | DEPOSIT       | +300 000 | Balans: 1 550k  ║
+║  3) 2026-02-03 12:43 | WITHDRAW      | -200 000 | Balans: 1 050k  ║
+║                                                                   ║
+║  (Agar tarix bo'sh bo'lsa: "Tranzaksiya mavjud emas")             ║
+╠═══════════════════════════════════════════════════════════════════╣
+║  [9] Asosiy menyuga qaytish                                       ║
+║  [0] Chiqish                                                      ║
+╚═══════════════════════════════════════════════════════════════════╝
+Tanlov: _ """
+
+old_pin_code_message = Fore.GREEN + Style.BRIGHT + """
+╔══════════════════════════════════════════════════════════════╗
+║                      PIN-KODNI O'ZGARTIRISH                  ║
+╠══════════════════════════════════════════════════════════════╣
+║  Xavfsizlik uchun eski PIN-kodni kiriting.                   ║
+║                                                              ║
+║  [0] Bekor qilish                                            ║
+╚══════════════════════════════════════════════════════════════╝
+Eski PIN: _ _ _ _ """
+
+new_pin_code_message = Fore.GREEN + Style.BRIGHT + """
+╔══════════════════════════════════════════════════════════════╗
+║                      PIN-KODNI O'ZGARTIRISH                  ║
+╠══════════════════════════════════════════════════════════════╣
+║  Yangi 4 xonali PIN-kodni kiriting.                          ║
+║                                                              ║
+║  [0] Bekor qilish                                            ║
+╚══════════════════════════════════════════════════════════════╝
+Yangi PIN: _ _ _ _ """
+
+new_pincode_confirmation_message = Fore.GREEN + Style.BRIGHT + """
+╔══════════════════════════════════════════════════════════════╗
+║                      PIN-KODNI O'ZGARTIRISH                  ║
+╠══════════════════════════════════════════════════════════════╣
+║  Yangi PIN-kodni qaytadan kiriting (tasdiqlash).             ║
+║                                                              ║
+║  [0] Bekor qilish                                            ║
+╚══════════════════════════════════════════════════════════════╝
+Tasdiqlash PIN: _ _ _ _ """
+
+pin_updated_message = Fore.GREEN + Style.BRIGHT + """
+╔══════════════════════════════════════════════════════════════╗
+║                       AMALIYOT MUVAFFAQIYATLI                ║
+╠══════════════════════════════════════════════════════════════╣
+║  PIN-kodingiz muvaffaqiyatli o'zgartirildi.                  ║
+║  Iltimos, yangi PIN-ni hech kimga aytmang.                   ║
+╚══════════════════════════════════════════════════════════════╝
+ENTER bosing... """
+
+error_in_old_pin_message = Fore.RED + Style.BRIGHT + """
+╔══════════════════════════════════════════════════════════════╗
+║                            XATOLIK                           ║
+╠══════════════════════════════════════════════════════════════╣
+║  Eski PIN noto'g'ri kiritildi.                               ║
+╚══════════════════════════════════════════════════════════════╝
+ENTER bosing... """
+
+not_matched_new_pin_message = Fore.RED + Style.BRIGHT + """
+╔══════════════════════════════════════════════════════════════╗
+║                            XATOLIK                           ║
+╠══════════════════════════════════════════════════════════════╣
+║  Yangi PIN va tasdiqlash PIN mos kelmadi.                    ║
+╚══════════════════════════════════════════════════════════════╝
+ENTER bosing... """
+
+self_block_message = Fore.YELLOW + Style.BRIGHT + """
+╔══════════════════════════════════════════════════════════════╗
+║                     KARTANI BLOKLASH (XAVFSIZLIK)            ║
+╠══════════════════════════════════════════════════════════════╣
+║  Diqqat! Kartani bloklasangiz, ATM orqali kira olmaysiz.     ║
+║  Keyin bankka murojaat qilish kerak bo'ladi.                 ║
+║                                                              ║
+║  Davom etilsinmi?                                            ║
+║  [1] Ha, kartani bloklayman                                  ║
+║  [0] Yo'q, bekor qilish                                      ║
+╚══════════════════════════════════════════════════════════════╝
+Tanlov: _ """
+
+logout_message = Fore.GREEN + Style.BRIGHT + """
+╔══════════════════════════════════════════════════════════════╗
+║                           CHIQISH                            ║
+╠══════════════════════════════════════════════════════════════╣
+║  Kartangiz qaytarildi.                                       ║
+║  Bankomatdan foydalanganingiz uchun rahmat!                  ║
+║                                                              ║
+║  Xavfsizlik eslatmasi:                                       ║
+║    • Chekingizni (agar bo'lsa) olib keting.                  ║
+║    • Hech kimga PIN aytmang.                                 ║
+╚══════════════════════════════════════════════════════════════╝
+ENTER bosing... """
+print(logout_message)
