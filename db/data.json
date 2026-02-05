@@ -3,7 +3,7 @@
     {
       "card_number": "8600123412341234",
       "pin": "1234",
-      "account_id": "acc_001",
+      "account_id": "acc_1",
       "owner": "Ali Valiyev",
       "blocked": false,
       "pin_tries": 0

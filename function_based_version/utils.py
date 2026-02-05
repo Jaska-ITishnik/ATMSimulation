@@ -25,6 +25,7 @@ welcome_message = Fore.GREEN + Style.BRIGHT + """
 ║  Tizim holati: ONLINE                                        ║
 ╠══════════════════════════════════════════════════════════════╣
 ║  [1] Kartani kiritish / Davom etish                          ║
+║  [2] Kartani olish                                           ║
 ║  [0] Chiqish                                                 ║
 ╚══════════════════════════════════════════════════════════════╝
 Tanlov: _"""
@@ -409,4 +410,3 @@ logout_message = Fore.GREEN + Style.BRIGHT + """
 ║    • Hech kimga PIN aytmang.                                 ║
 ╚══════════════════════════════════════════════════════════════╝
 ENTER bosing... """
-print(logout_message)
