@@ -11,7 +11,7 @@
   ],
   "accounts": [
     {
-      "account_id": "acc_001",
+      "account_id": "acc_1",
       "balance": 1250000,
       "currency": "UZS"
     }
