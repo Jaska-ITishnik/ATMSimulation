@@ -32,7 +32,7 @@ def register_card() -> bool:
         time.sleep(4)
         return False
 
-    with open(os.path.join(BASE / "db/data.json"), "r") as db:
+    with open(os.path.join(BASE / "db/data.json"), "r") as db:  # new
         data = json.load(db)
 
     if card_number in [d["card_number"] for d in data["cards"]]:
@@ -43,3 +43,10 @@ def register_card() -> bool:
     last_account = [d["account_id"] for d in data["cards"]][-1]
     account_id = f"acc_{int(last_account["account_id"].split("_")[-1]) + 1}"
     return True
+
+
+
+
+
+
+

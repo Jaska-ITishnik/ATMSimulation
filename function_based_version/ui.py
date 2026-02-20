@@ -12,3 +12,10 @@ def about_page():
                 about_page()
         case "0":
             print(logout_message)
+
+
+"""
+
+git config --global user.name "Your Name"
+git config --global user.email "your_email@example.com"
+"""
