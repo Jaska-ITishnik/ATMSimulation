@@ -19,12 +19,7 @@ def check_pin_code():
         return pin_code
 
 
-def check_owner():
-    owner = input("Karta kim uchun:")
-
-
-def register_card() -> bool:
-    card_number = input("💳Karta raqamini kiriting:")
+def card_validator(card_number: str):
     if not card_number.isdigit():
         print(Fore.RED + Style.BRIGHT + "Karta raqamida faqat raqamlar bo'lishi kerak!")
         time.sleep(4)
@@ -34,6 +29,10 @@ def register_card() -> bool:
         time.sleep(4)
         return False
 
+
+def register_card() -> bool:
+    card_number = input("💳Karta raqamini kiriting:")
+    card_validator(card_number)
     with open(os.path.join(BASE / "db/data.json"), "r") as db:  # new
         data = json.load(db)
 
@@ -46,6 +45,11 @@ def register_card() -> bool:
     account_id = f"acc_{int(last_account[-1]) + 1}"
     owner = input(Fore.GREEN + Style.BRIGHT + "To'liq ism ni kiriting:")
     with open(os.path.join(BASE / "db/data.json"), "w") as db:  # new
+        data["accounts"].append({
+            "account_id": account_id,
+            "balance": 0,
+            "currency": "UZS"
+        })
         data["cards"].append({
             "card_number": card_number,
             "pin": pin_code,
@@ -55,4 +59,17 @@ def register_card() -> bool:
             "pin_tries": 0
         })
         json.dump(data, db, indent=3)
+    return True
+
+
+def login_card() -> bool:  # noqa
+    card_number = input("💳Karta raqamini kiriting:")
+    card_validator(card_number)
+    with open(os.path.join(BASE / "db/data.json"), "r") as db:  # new
+        data = json.load(db)
+
+    if card_number not in [d["card_number"] for d in data["cards"]]:
+        print(Fore.RED + Style.BRIGHT + "Bunday karta mavjud emas!")
+        time.sleep(3)
+        return False
     return True

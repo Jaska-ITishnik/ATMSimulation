@@ -83,9 +83,9 @@ ENTER bosing... """
 
 
 def main_menu_message(account_id: str) -> str:  # todo select from db
-    owner = None
-    card_number = None
-    is_blocked = None
+    owner = "None"
+    card_number = "None"
+    is_blocked = "None"
 
     return Fore.GREEN + Style.BRIGHT + f"""
 ╔══════════════════════════════════════════════════════════════╗

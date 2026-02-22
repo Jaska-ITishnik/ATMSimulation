@@ -1,0 +1,6 @@
+Tasks:
+1.Check for pin code(length 4, only numbers)
+2.Karta ga amal qilish mudatini qo'shamiz (registrda)
+    - import datetime
+      print(datetime.date.strftime(datetime.date.today(), "%d/%y"))
+3.login da qo'shimcha tekshirish(amal qilish kmuddati | bloklanganmi?)
