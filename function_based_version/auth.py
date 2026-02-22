@@ -12,6 +12,8 @@ def check_pin_code():
     pin_code = input("🔢PIN kod o'rnating:")
     confirm_pin = input("🔢PIN kod ni qayta kiriting:")
     while pin_code != confirm_pin:
+        print(Fore.RED + Style.BRIGHT + "PIN kodlar mos kelmadi")
+        time.sleep(2)
         check_pin_code()
     else:
         return pin_code
@@ -41,12 +43,16 @@ def register_card() -> bool:
         return False
     pin_code = check_pin_code()
     last_account = [d["account_id"] for d in data["cards"]][-1]
-    account_id = f"acc_{int(last_account["account_id"].split("_")[-1]) + 1}"
+    account_id = f"acc_{int(last_account[-1]) + 1}"
+    owner = input(Fore.GREEN + Style.BRIGHT + "To'liq ism ni kiriting:")
+    with open(os.path.join(BASE / "db/data.json"), "w") as db:  # new
+        data["cards"].append({
+            "card_number": card_number,
+            "pin": pin_code,
+            "account_id": account_id,
+            "owner": owner,
+            "blocked": False,
+            "pin_tries": 0
+        })
+        json.dump(data, db, indent=3)
     return True
-
-
-
-
-
-
-
